@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Players</h2>
+  <ul>
+    {% for p in players %}
+      <li><a href="{% url 'player_detail' p.pk %}">{{ p.first_name }} {{ p.last_name }} ({{ p.get_position_display }}) - {{ p.team }}</a></li>
+    {% empty %}
+      <li>No players yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

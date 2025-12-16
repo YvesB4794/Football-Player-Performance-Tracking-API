@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>{{ player.first_name }} {{ player.last_name }}</h2>
+  <p>Position: {{ player.get_position_display }}</p>
+  <p>Team: {{ player.team }}</p>
+  <p>Nationality: {{ player.nationality }}</p>
+  <p>Squad #: {{ player.squad_number }}</p>
+{% endblock %}

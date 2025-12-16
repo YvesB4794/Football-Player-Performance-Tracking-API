@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Top Scorers</h2>
+  <ol>
+    {% for p in players %}
+      <li>{{ p }} — {{ p.total_goals|default:0 }} goals</li>
+    {% empty %}
+      <li>No data</li>
+    {% endfor %}
+  </ol>
+{% endblock %}
