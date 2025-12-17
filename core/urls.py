@@ -21,18 +21,18 @@ from rest_framework import routers
 from teams.views import TeamViewSet
 from players.views import PlayerViewSet
 from matches.views import MatchViewSet
-from stats.views import PlayerStatsViewSet
+from stats.views import PerformanceViewSet
 
 router = routers.DefaultRouter()
 router.register(r'teams', TeamViewSet)
 router.register(r'players', PlayerViewSet)
 router.register(r'matches', MatchViewSet)
-router.register(r'player-stats', PlayerStatsViewSet)
+router.register(r'player-stats', PerformanceViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)),
-    path('', include('players.urls')),
-    path('', include('matches.urls')),
-    path('', include('stats.urls')),
+    path('api/v1/players/', include('players.urls')),
+    path('api/v1/teams/', include('teams.urls')),
+    path('api/v1/matches/', include('matches.urls')),
+    path('api/v1/stats/', include('stats.urls')),
 ]

@@ -1,5 +1,5 @@
 # players/views.py
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from .models import Player
 from .serializers import PlayerSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -15,6 +15,9 @@ class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.select_related('team').all()
     serializer_class = PlayerSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['name', 'club', 'position', 'nationality']
+    ordering_fields = ['name', 'age']
 
 # -- Template views (per-app templates)
 def players_list(request):

@@ -1,5 +1,5 @@
 # matches/views.py
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from .models import Match
 from .serializers import MatchSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -9,6 +9,9 @@ class MatchViewSet(viewsets.ModelViewSet):
     queryset = Match.objects.select_related('home_team','away_team').all()
     serializer_class = MatchSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['home_team', 'away_team', 'stadium']
+    ordering_fields = ['date']
 
 def matches_list(request):
     matches = Match.objects.select_related('home_team','away_team').all()
