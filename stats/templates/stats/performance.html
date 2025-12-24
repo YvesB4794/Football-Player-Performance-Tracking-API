@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-  <h2>Player Stats</h2>
+  <h2>Performance Stats</h2>
   <ul>
     {% for s in stats %}
+        
+      <li>
+          <a href="{% url 'performance_detail' stat.id %}">
+            {{ stat.player }} - Goals: {{ stat.goals }}
+          </a>
+      </li>
+
       <li>{{ s.player }} — {{ s.match }} — Goals: {{ s.goals }} Assists: {{ s.assists }} Minutes: {{ s.minutes_played }}</li>
     {% empty %}
       <li>No stats yet.</li>
+
     {% endfor %}
   </ul>
 {% endblock %}
+

@@ -22,17 +22,33 @@ from teams.views import TeamViewSet
 from players.views import PlayerViewSet
 from matches.views import MatchViewSet
 from stats.views import PerformanceViewSet
+from core.views import home, register
+
+
 
 router = routers.DefaultRouter()
 router.register(r'teams', TeamViewSet)
 router.register(r'players', PlayerViewSet)
 router.register(r'matches', MatchViewSet)
-router.register(r'player-stats', PerformanceViewSet)
+router.register(r'stats', PerformanceViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Frontend
+    path('', home, name='home'),
+    path('register/', register, name='register'),
+
+    # Auth
+    path('accounts/', include('django.contrib.auth.urls')),
+
     path('api/v1/players/', include('players.urls')),
     path('api/v1/teams/', include('teams.urls')),
     path('api/v1/matches/', include('matches.urls')),
     path('api/v1/stats/', include('stats.urls')),
+    #path("", index)
 ]
+
+
+

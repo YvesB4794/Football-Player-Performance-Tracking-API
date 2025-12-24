@@ -3,9 +3,19 @@
   <h2>Matches</h2>
   <ul>
     {% for m in matches %}
+
+       <li>
+            <a href="{% url 'match_detail' match.id %}">
+                {{ match.home_team }} vs {{ match.away_team }}
+            </a>
+      </li>
+
       <li>{{ m.date }} — {{ m.home_team }} {{ m.home_score }} : {{ m.away_score }} {{ m.away_team }}</li>
     {% empty %}
       <li>No matches yet.</li>
     {% endfor %}
   </ul>
 {% endblock %}
+
+
+

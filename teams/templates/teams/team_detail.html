@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ team.name }}</h2>
+<p><strong>City:</strong> {{ team.city }}</p>
+<a href="{% url 'team_list' %}">⬅ Back</a>
+{% endblock %}

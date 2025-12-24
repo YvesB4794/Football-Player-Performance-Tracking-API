@@ -1,11 +1,19 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-  <h2>Players</h2>
-  <ul>
-    {% for p in players %}
-      <li><a href="{% url 'player_detail' p.pk %}">{{ p.first_name }} {{ p.last_name }} ({{ p.get_position_display }}) - {{ p.team }}</a></li>
-    {% empty %}
-      <li>No players yet.</li>
+<link rel="stylesheet" href="{% static 'players/players.css' %}">
+
+<h2>Players</h2>
+<ul>
+    {% for player in players %}
+        <li>
+            <a href="{% url 'player_detail' player.id %}">
+                {{ player.name }} - {{ player.position }}
+            </a>
+        </li>
     {% endfor %}
-  </ul>
+</ul>
+
+<script src="{% static 'players/players.js' %}"></script>
 {% endblock %}

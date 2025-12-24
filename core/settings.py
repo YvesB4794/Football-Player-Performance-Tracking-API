@@ -68,7 +68,8 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+#        'DIRS': [BASE_DIR / "templates"],
+         'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,6 +136,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #STATICFILES_DIRS = [BASE_DIR / "static"]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # CORS (dev only)
 CORS_ALLOW_ALL_ORIGINS = True  # OK for development
 # REST Framework default config

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ stat.player }}</h2>
+<p>Goals: {{ stat.goals }}</p>
+<p>Assists: {{ stat.assists }}</p>
+<p>shots: {{ stat.shots }}</p>
+<p>passes: {{ stat.passes }}</p>
+<p>minutes_played: {{ stat.minutes_played }}</p>
+<p>rating: {{ stat.rating }}</p>
+<a href="{% url 'performance_list' %}">⬅ Back</a>
+{% endblock %}

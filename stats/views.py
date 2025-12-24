@@ -2,6 +2,7 @@ from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Performance
 from .serializers import PerformanceSerializer
+from django.shortcuts import render, get_object_or_404, redirect
 
 
 class PerformanceViewSet(viewsets.ModelViewSet):
@@ -36,3 +37,20 @@ class PerformanceViewSet(viewsets.ModelViewSet):
         'minutes_played',
         'rating',
     ]
+
+# -- Template views (per-app templates)
+#def stat_list(request):
+#    stats = Performance.objects.select_related('stats').all()
+#    return render(request, 'stats/stats_list.html', {'stats': stats})
+
+#def stat_leaderboard_goals(request):
+#    stats = Performance.objects.select_related('stats').all()
+#    return render(request, 'stats/leaderboard_goals.html', {'stats': stats})
+
+def performance_list(request):
+    stats = Performance.objects.select_related('stats').all()
+    return render(request, 'stats/performance_list.html', {'stats': stats})
+
+def performance_detail(request, pk):
+    stat = get_object_or_404(Performance, pk=pk)
+    return render(request, 'stats/performance_detail.html', {'stat': stat})

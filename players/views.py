@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login
 from .forms import RegisterForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+#from django.http import HttpResponse
 
 class PlayerViewSet(viewsets.ModelViewSet):
     """
@@ -50,3 +51,6 @@ def profile_view(request):
     else:
         form = ProfileUpdateForm(instance=request.user)
     return render(request, 'registration/profile.html', {'form': form})
+
+#def index(request):
+#    return render(request,'players/index.html')
